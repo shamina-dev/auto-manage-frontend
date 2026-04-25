@@ -1,0 +1,100 @@
+<div class="view-overlay" (click)="onClose()">
+    <div class="view-modal" (click)="$event.stopPropagation()">
+
+        <!-- Header -->
+        <div class="modal-header">
+            <div class="header-left">
+                <div class="header-icon">
+                    <span class="material-icons-outlined">build_circle</span>
+                </div>
+                <div>
+                    <h2>Service Details</h2>
+                    <p *ngIf="service.id">Record #{{ service.id }}</p>
+                </div>
+            </div>
+            <button class="close-btn" (click)="onClose()">
+                <span class="material-icons-outlined">close</span>
+            </button>
+        </div>
+
+        <!-- Body -->
+        <div class="modal-body">
+
+            <!-- Info Grid -->
+            <div class="info-grid">
+                <div class="info-card">
+                    <span class="info-label">
+                        <span class="material-icons-outlined">person</span> Customer Name
+                    </span>
+                    <span class="info-value">{{ service.customer_name }}</span>
+                </div>
+
+                <div class="info-card">
+                    <span class="info-label">
+                        <span class="material-icons-outlined">engineering</span> Mechanic
+                    </span>
+                    <span class="info-value">{{ service.mechanic }}</span>
+                </div>
+
+                <div class="info-card">
+                    <span class="info-label">
+                        <span class="material-icons-outlined">confirmation_number</span> License Plate
+                    </span>
+                    <span class="info-value plate-badge">{{ service.license_plate }}</span>
+                </div>
+
+                <div class="info-card">
+                    <span class="info-label">
+                        <span class="material-icons-outlined">directions_car</span> Vehicle Model
+                    </span>
+                    <span class="info-value">{{ service.vehicle_model }}</span>
+                </div>
+
+                <div class="info-card full-span">
+                    <span class="info-label">
+                        <span class="material-icons-outlined">chat_bubble_outline</span> Customer Request
+                    </span>
+                    <span class="info-value request-text">{{ service.customer_request }}</span>
+                </div>
+
+                <div class="info-card" *ngIf="service.created_at">
+                    <span class="info-label">
+                        <span class="material-icons-outlined">schedule</span> Created At
+                    </span>
+                    <span class="info-value">{{ service.created_at | date:'medium' }}</span>
+                </div>
+
+                <div class="info-card" *ngIf="service.updated_at">
+                    <span class="info-label">
+                        <span class="material-icons-outlined">update</span> Last Updated
+                    </span>
+                    <span class="info-value">{{ service.updated_at | date:'medium' }}</span>
+                </div>
+            </div>
+
+            <!-- QR Section -->
+            <div class="qr-section">
+                <div class="qr-header">
+                    <span class="material-icons-outlined">qr_code_2</span>
+                    <h3>Service QR Code</h3>
+                </div>
+                <p class="qr-caption">Scan to view full service record details.</p>
+
+                <div class="qr-wrapper">
+                    <img *ngIf="qrDataUrl" [src]="qrDataUrl" alt="Service QR Code" class="qr-image" />
+                    <div class="qr-badge">QR</div>
+                </div>
+
+                <p class="qr-note">
+                    <span class="material-icons-outlined">info</span>
+                    QR code encodes this service's key details.
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="modal-footer">
+            <button class="btn btn-outline" (click)="onClose()">Close</button>
+        </div>
+    </div>
+</div>

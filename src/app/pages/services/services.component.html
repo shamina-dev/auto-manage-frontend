@@ -45,7 +45,7 @@
                             <td>{{service.vehicle_model}}</td>
                             <td class="truncate-cell">{{service.customer_request}}</td>
                             <td class="action-cell">
-                                <button class="btn-view-more">View More</button>
+                                <button class="btn-view-more" (click)="openViewModal(service)">View More</button>
                             </td>
                         </tr>
                         <tr *ngIf="services.length === 0">
@@ -59,3 +59,9 @@
 </div>
 
 <app-service-dialog *ngIf="showDialog" (closeDialog)="closeDialog($event)"></app-service-dialog>
+
+<app-service-view
+    *ngIf="showViewModal && selectedService"
+    [service]="selectedService!"
+    (closeView)="closeViewModal()">
+</app-service-view>
